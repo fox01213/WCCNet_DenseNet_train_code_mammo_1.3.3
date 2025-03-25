@@ -12,6 +12,7 @@ There are a few requirements needed in order to get started with this shared Pyt
 •	 Augment the scarcity Abnormal images later-on to evaluate the difference by also adopt medical grade, mammogram-specific data augmentation techniques. 
 
 Version Evolution (Note that the shared version is version 1.3.3)
+
 The ver1.2 is to first try the class weighting approach for WCCNet
 -------------------------------------------------------
 The ver1.2.1 is to:
