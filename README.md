@@ -13,8 +13,7 @@ There are a few requirements needed in order to get started with this shared Pyt
 
 
 
-## Version Evolution (Note that the shared version is version 1.3.3)
-
+## Version Evolution 
 ##### The ver1.2 is to first try the class weighting approach for WCCNet
 -------------------------------------------------------
 The ver1.2.1 is to:
@@ -74,7 +73,7 @@ The ver1.3.2.1 is to:
 1. Added gradient clipping
 2. adjust FocalLoss abd class weights
 -----------------------------------------------------------------
-The ver1.3.3 is to:
+The ver1.3.3 is to: (Note that the shared version is version 1.3.3)
 1. Enhanced FocalLoss Parameters:
     * Phase 1 (First 20 epochs):
         - gamma_pos=0.5 (more focus on all positive samples)
