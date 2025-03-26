@@ -1,25 +1,28 @@
-#Getting Started
+# Getting Started
 This README provides instructions on how to get started with WCCNet on DenseNet to make mammogram binary (Abnormal vs. Normal) classification by using the public mammogram FFDM dataset, such as INBreast and VinDr-Mammo, as the source of training data.
 
-Requirements
+## Requirements
 There are a few requirements needed in order to get started with this shared Python script:
-•	Install Anaconda, Python and PyTorch in your AI training environment
-•	Recommend adopting a single FFDM as training dataset in the very beginning. Then to incorporate multiple FFDM databases for generalization
-•	Convert the DICOM mammogram images in your selected FFDM database to 1024*1024 png images by leveraging medical grade image preprocessing techniques that are specially developed for mammogram
-•	Anonymize/block the private information on DICOM images if any
-•	Recommend to adopt patient-aware technique to split the train set of the selected FFDM database to Train and Validate split by either 80/20 or 85/15 ratio  
-•	WCCNet is a deep learning model designed to enhance classification tasks by addressing class imbalance through a weighted cross-entropy loss function. This allows the network to prioritize learning from underrepresented classes, which is particularly useful in medical imaging tasks like mammogram classification. Try first with an imbalanced dataset to evaluate the effectiveness of WCCNet for imbalanced dataset 
-•	 Augment the scarcity Abnormal images later-on to evaluate the difference by also adopt medical grade, mammogram-specific data augmentation techniques. 
+* Install Anaconda, Python and PyTorch in your AI training environment
+* Recommend adopting a single FFDM as training dataset in the very beginning. Then to incorporate multiple FFDM databases for generalization
+* Convert the DICOM mammogram images in your selected FFDM database to 1024*1024 png images by leveraging medical grade image preprocessing techniques that are specially developed for mammogram
+* Anonymize/block the private information on DICOM images if any
+* Recommend to adopt patient-aware technique to split the train set of the selected FFDM database to Train and Validate split by either 80/20 or 85/15 ratio  
+* WCCNet is a deep learning model designed to enhance classification tasks by addressing class imbalance through a weighted cross-entropy loss function. This allows the network to prioritize learning from underrepresented classes, which is particularly useful in medical imaging tasks like mammogram classification. Try first with an imbalanced dataset to evaluate the effectiveness of WCCNet for imbalanced dataset 
+* Augment the scarcity Abnormal images later-on to evaluate the difference by also adopt medical grade, mammogram-specific data augmentation techniques.
 
-Version Evolution (Note that the shared version is version 1.3.3)
 
-The ver1.2 is to first try the class weighting approach for WCCNet
+
+## Version Evolution (Note that the shared version is version 1.3.3)
+
+##### The ver1.2 is to first try the class weighting approach for WCCNet
 -------------------------------------------------------
 The ver1.2.1 is to:
 1. Maintains training history when resuming
 2. Saves optimizer state for consistent training continuation
 3. Allows specifying new total epochs when resuming
 4. Preserves all metrics and best model tracking
+   
 How to use:
 1. Train from scratch: python WCCNet_DenseNet_train_code_mammo_1.3.2.py --epochs 100
 2. Resume from checkpoint: python WCCNet_DenseNet_train_code_mammo_1.3.py --resume --epochs 100
@@ -61,6 +64,7 @@ The ver1.3.2 is to:
 4. Improved data loading efficiency
 5. Modified class weights and focal loss parameters
 6. Added TF32 support for RTX 4090
+
 How to use:
 1. Train from scratch: python WCCNet_DenseNet_train_code_mammo_1.3.2.py --epochs 100
 2. Resume from checkpoint: python WCCNet_DenseNet_train_code_mammo_1.3.2.py --resume --epochs 100
@@ -95,27 +99,15 @@ The ver1.3.3 is to:
 5. Add proper train/validation split
 6. Implement advanced learning rate scheduling
 
-Adopted Training Techniques and Configurations
+## Adopted Training Techniques and Configurations
 In order to cope with the vehement oscillation of Sensitivity and Specificity metrics during training, following training techniques with its associated hyperparameters were adopted to converge both lines in early stage. The following are the techniques and their tested hyperparameter values. Reader can further be adjusted for best result against your specific training dataset.     
-Version	WCCNet_DenseNet_train_code_mammo_1.3.3.py
-HyperP	Class Weight	Focal Loss	Curriculum Learning	Sensitivity Loss	Dynamic Training Adjustments
-	weight_normal=1.0
-weight_abnormal=1.2	Phase 1: 
-gamma_pos=1.2
-gamma_neg=1.8
-alpha=0.55
-pos_weight=1.5
-Phase 2: 
-gamma_pos=1.5
-gamma_neg=1.5
-alpha=0.5
-pos_weight=1.2
-label_smoothing=0.05	start_epoch=0        end_epoch=20        start_weight=2.0        end_weight=3.5	Phase 1: sensitivity_weight=0.3
-Phase 2: sensitivity_weight=0.2	alpha = 0.85
-pos_weight=4.0
-param_group['lr'] *= 0.8
+
+![image](https://github.com/user-attachments/assets/4e56210b-d290-4071-b5fb-0fd42137caec)
 
 
 
-Training Result
+## Training Result
 Having carefully implemented the shared script by using well-prepared training, validate and test dataset, and hyperparameters fine-turning. Readers might get training results like the one as attached below.
+
+![image](https://github.com/user-attachments/assets/9b1a0553-9bbc-423e-aa4d-9296873f7d95)
+
