@@ -1,4 +1,4 @@
-Getting Started
+#Getting Started
 This README provides instructions on how to get started with WCCNet on DenseNet to make mammogram binary (Abnormal vs. Normal) classification by using the public mammogram FFDM dataset, such as INBreast and VinDr-Mammo, as the source of training data.
 
 Requirements
